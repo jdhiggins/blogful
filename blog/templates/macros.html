@@ -1,0 +1,23 @@
+{% macro render_post(post, current_user) %}
+<div class="row">
+    <div class="col-md-4 text-right metadata">
+        <ul class="list-unstyled">
+            <li>
+                {% if post.author.name %}
+                Posted by:
+                {{ post.author.name }}
+                {% endif %}
+                {{ post.datetime | dateformat("%d/%m/%y") }}         
+                <a href="{{ url_for('edit_post_post', post_id=(post.id)) }}"> Edit</a>
+                <a href="{{ url_for('delete_post_post', post_id=(post.id)) }}"> Delete</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h1>
+            <a href="{{ url_for('single_full_post', post_id=(post.id)) }}"> {{ post.title }}</a>
+        </h1>
+        {{ post.content | safe }}
+    </div>
+</div>
+{% endmacro %}
