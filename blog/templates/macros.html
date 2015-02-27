@@ -7,9 +7,11 @@
                 Posted by:
                 {{ post.author.name }}
                 {% endif %}
-                {{ post.datetime | dateformat("%d/%m/%y") }}         
+                {{ post.datetime | dateformat("%d/%m/%y") }}
+                {% if post.author.id == current_user.id %}
                 <a href="{{ url_for('edit_post_post', post_id=(post.id)) }}"> Edit</a>
                 <a href="{{ url_for('delete_post_post', post_id=(post.id)) }}"> Delete</a>
+                {% endif %}
             </li>
         </ul>
     </div>
